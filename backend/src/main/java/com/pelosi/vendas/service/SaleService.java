@@ -1,6 +1,8 @@
 package com.pelosi.vendas.service;
 
 import com.pelosi.vendas.dto.SaleDTO;
+import com.pelosi.vendas.dto.SaleSuccessDTO;
+import com.pelosi.vendas.dto.SaleSumDTO;
 import com.pelosi.vendas.dto.SellerDTO;
 import com.pelosi.vendas.repository.SaleRepository;
 import com.pelosi.vendas.repository.SellerRepository;
@@ -11,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +22,8 @@ public class SaleService {
 
     @Autowired
     private SaleRepository repository;
+
+    @Autowired
     private SellerRepository sellerRepository;
 
     @Transactional(readOnly = true)//garante de que toda operacao é resolvida aqui, e o read only n faz lock de escrita no banco
@@ -28,5 +34,16 @@ public class SaleService {
                 sale.getAmount(),sale.getDate(),
                 new SellerDTO(sale.getSeller().getId(),sale.getSeller().getName())));
     }
+
+    @Transactional(readOnly = true)
+    public List<SaleSumDTO> amountGroupBySeller(){
+        return repository.amountGroupedBySeller();
+    }
+
+    @Transactional(readOnly = true)
+    public List<SaleSuccessDTO> successGroupBySeller(){
+        return repository.successGroupedBySeller();
+    }
+
 
 }
