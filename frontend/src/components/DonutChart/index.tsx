@@ -13,35 +13,16 @@ const DonutChart = () => {
     //FORMAR CERTA
     const [chartData, setChartData] = useState<ChartData>({labels: [], series: []});
     useEffect(() => {
-        axios.get(`{BASE_URL}/sales/amount-by-seller`)
+        axios.get(`${BASE_URL}/sales/amount-by-seller`)
         .then(resp => {
-            console.log(resp.data)
             const data = resp.data as SaleSum[];
-            const myLabels = data.map(x => x.sellerName)
+            const myLabels = data.map(x => x.name)
             const mySeries = data.map(x => x.sum)
-            setChartData({labels: myLabels, series: mySeries})
-            console.log(chartData)
+            setChartData(
+                {labels: myLabels, series: mySeries}
+                )
         });
     }, []);
-    
-
-    //FORMAR ERRADA
-    /*
-    let chartData : ChartData = { labels: [], series: [] }
-    axios.get(`{BASE_URL}/sales/amount-by-seller`)
-    .then(resp => {
-        console.log(resp.data)
-        const data = resp.data as SaleSum[];
-        const myLabels = data.map(x => x.sellerName)
-        const mySeries = data.map(x => x.sum)
-        setChartData({labels: myLabels, series: mySeries})
-        console.log(chartData)
-    });
-    const mockData = {
-        series: [477138, 499928, 444867, 220426, 473088],
-        labels: ['Anakin', 'Barry Allen', 'Kal-El', 'Logan', 'Padmé']
-    }
-    */
 
     const options = {
         legend: {
