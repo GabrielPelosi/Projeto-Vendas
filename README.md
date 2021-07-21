@@ -9,3 +9,12 @@
 	2. Leitura de todos os vendedores
 * A api front-end (React), tem um home page, com acesso direto a pagina de dashboard.
 * Na pagina de dashboard é possível analisar graficos de % de sucesso de vendas por vendedor, total de vendas e uma tabela paginada com todas as vendas ordenada pela data realizada.
+
+ ## Link para a [Pagina principal](https://pelosi-vendas.netlify.app/).
+![Imagem]()
+
+
+## Link para a [Pagina dashboard](https://pelosi-vendas.netlify.app/dashboard).
+
+
+[Imagem]()
